@@ -14,7 +14,7 @@
     <link href="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this scaffold -->
-    <link href="{{ '{{request.static_url(' }}'{{cookiecutter.repo_name}}:static/theme.css'){{ '}}' }}">
+    <link href="{{ '{{request.static_url(' }}'{{cookiecutter.repo_name}}:static/theme.css'){{ '}}' }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -32,9 +32,9 @@
             <img class="logo img-responsive" src="{{ '{{request.static_url(' }}'{{cookiecutter.repo_name}}:static/pyramid.png') {{ '}}' }}" alt="pyramid web framework">
           </div>
           <div class="col-md-10">
-            {% block content %}
+            {{ "{% block content %}" }}
                 <p>No content</p>
-            {% endblock content %}
+            {{ "{% endblock content %}" }}
           </div>
         </div>
         <div class="row">
