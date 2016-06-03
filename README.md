@@ -2,8 +2,8 @@
 Pyramid Alchemy Template
 ========================
 
-A cookiecutter (project template) for creating a Pyramid starter project using
-Chameleon for templating.
+A cookiecutter (project template) for creating a Pyramid project using SQLAlchemy as
+an ORM, URL dispatch for routing, and Jinja2 for templating.
 
 See https://github.com/audreyr/cookiecutter.
 
