@@ -1,4 +1,4 @@
-{{ cookiecutter.project_name }}
+{{ cookiecutter.repo_name }}
 ===============================
 
 Getting Started
