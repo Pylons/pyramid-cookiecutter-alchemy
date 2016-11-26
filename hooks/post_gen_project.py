@@ -1,52 +1,48 @@
-""" Enable venv and show convenience message """
+import os
 import subprocess
 import sys
 
 from textwrap import dedent
 
-try:
-    # python 3.2+
-    import venv
-    VIRTUALENV_AVAILABLE = True
-except ImportError:
-    VIRTUALENV_AVAILABLE = False
+WIN = sys.platform.startswith('win')
 
+venv = 'env'
+if WIN:
+    venv_cmd = 'py -3 -m venv'
+    venv_bin = os.path.join(venv, 'Scripts')
+else:
+    venv_cmd = 'python3 -m venv'
+    venv_bin = os.path.join(venv, 'bin')
 
-if VIRTUALENV_AVAILABLE:
-    venv.create('.', with_pip=True)
-    proc = subprocess.Popen(
-            ['bin/pip', 'install', '--upgrade', 'pip', 'setuptools'],
-            shell=sys.platform.startswith('win'),
-            cwd='.'
-    )
-    proc.wait()
-    proc = subprocess.Popen(
-            ['bin/pip', 'install', '-e', '.'],
-            shell=sys.platform.startswith('win'),
-            cwd='.'
-    )
-    proc.wait()
-    proc = subprocess.Popen(
-            ['bin/initialize_{{ cookiecutter.repo_name }}_db', 'development.ini'],
-            shell=sys.platform.startswith('win'),
-            cwd='.'
-    )
-    proc.wait()
-
-separator = "=" * 79
+vars = dict(
+    separator='=' * 79,
+    venv=venv,
+    venv_cmd=venv_cmd,
+    pip_cmd=os.path.join(venv_bin, 'pip'),
+    pserve_cmd=os.path.join(venv_bin, 'pserve'),
+    init_cmd=os.path.join(venv_bin, 'initialize_{{ cookiecutter.repo_name }}_db'),
+)
 msg = dedent(
     """
     %(separator)s
-    Tutorials:     http://docs.pylonsproject.org/projects/pyramid_tutorials/en/latest/
     Documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/
+    Tutorials:     http://docs.pylonsproject.org/projects/pyramid_tutorials/en/latest/
     Twitter:       https://twitter.com/trypyramid
     Mailing List:  https://groups.google.com/forum/#!forum/pylons-discuss
     Welcome to Pyramid.  Sorry for the convenience.
     %(separator)s
-""" % {'separator': separator})
 
-if VIRTUALENV_AVAILABLE:
-    msg += "\nTo run the generated application, cd to %s and run:" % (
-        '{{ cookiecutter.repo_name }}')
-    msg += "\nbin/pserve development.ini"
+    Create a virtual environment for the project:
+        cd {{ cookiecutter.repo_name }}
+        %(venv_cmd)s %(venv)s
+
+    Install the project into the virtual environment:
+        %(pip_cmd)s install -e ".[testing]"
+
+    Configure the database:
+        %(init_cmd)s development.ini
+
+    To run the generated application:
+        %(pserve_cmd)s development.ini
+    """ % vars)
 print(msg)

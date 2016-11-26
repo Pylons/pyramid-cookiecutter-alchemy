@@ -54,7 +54,7 @@ class TestMyViewSuccessCondition(BaseTest):
         from .views.default import my_view
         info = my_view(dummy_request(self.session))
         self.assertEqual(info['one'].name, 'one')
-        self.assertEqual(info['project'], '{{ cookiecutter.repo_name }}')
+        self.assertEqual(info['project'], '{{ cookiecutter.project_name }}')
 
 
 class TestMyViewFailureCondition(BaseTest):

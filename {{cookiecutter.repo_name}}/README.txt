@@ -4,10 +4,18 @@
 Getting Started
 ---------------
 
-- cd <directory containing this file>
+- Create a Python virtual environment:
 
-  - $VENV/bin/pip install -e .
+    python3 -m venv $VENV
 
-  - $VENV/bin/initialize_{{ cookiecutter.repo_name }}_db development.ini
+- Install the project in editable mode:
 
-  - $VENV/bin/pserve development.ini
+    $VENV/bin/pip install -e ".[testing]"
+
+- Configure the database:
+
+    $VENV/bin/initialize_{{ cookiecutter.repo_name }}_db development.ini
+
+- Start the server:
+
+    $VENV/bin/pserve development.ini
