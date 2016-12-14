@@ -1,21 +1,33 @@
-{{ cookiecutter.repo_name }}
+{{ cookiecutter.project_name }}
 ===============================
 
 Getting Started
 ---------------
 
-- Create a Python virtual environment:
+- Change directory into your newly created project.
 
-    python3 -m venv $VENV
+    cd {{ cookiecutter.project_name }}
 
-- Install the project in editable mode:
+- Create a Python virtual environment.
 
-    $VENV/bin/pip install -e ".[testing]"
+    python3 -m venv env
 
-- Configure the database:
+- Upgrade packaging tools.
 
-    $VENV/bin/initialize_{{ cookiecutter.repo_name }}_db development.ini
+    env/bin/pip install --upgrade pip setuptools wheel
 
-- Start the server:
+- Install the project in editable mode with its testing requirements.
 
-    $VENV/bin/pserve development.ini
+    env/bin/pip install -e ".[testing]"
+
+- Configure the database.
+
+    env/bin/initialize_{{ cookiecutter.repo_name }}_db development.ini
+
+- Run your project's tests.
+
+    env/bin/pytest
+
+- Run your project.
+
+    env/bin/pserve development.ini

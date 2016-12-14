@@ -19,6 +19,7 @@ vars = dict(
     venv=venv,
     venv_cmd=venv_cmd,
     pip_cmd=os.path.join(venv_bin, 'pip'),
+    pytest_cmd=os.path.join(venv_bin, 'pytest'),
     pserve_cmd=os.path.join(venv_bin, 'pserve'),
     init_cmd=os.path.join(venv_bin, 'initialize_{{ cookiecutter.repo_name }}_db'),
 )
@@ -32,17 +33,25 @@ msg = dedent(
     Welcome to Pyramid.  Sorry for the convenience.
     %(separator)s
 
-    Create a virtual environment for the project:
+    Change directory into your newly created project.
         cd {{ cookiecutter.repo_name }}
+
+    Create a Python virtual environment.
         %(venv_cmd)s %(venv)s
 
-    Install the project into the virtual environment:
+    Upgrade packaging tools.
+        %(pip_cmd)s install --upgrade pip setuptools wheel
+
+    Install the project in editable mode with its testing requirements.
         %(pip_cmd)s install -e ".[testing]"
 
     Configure the database:
         %(init_cmd)s development.ini
 
-    To run the generated application:
+    Run your project's tests.
+        %(pytest_cmd)s
+
+    Run your project.
         %(pserve_cmd)s development.ini
     """ % vars)
 print(msg)
