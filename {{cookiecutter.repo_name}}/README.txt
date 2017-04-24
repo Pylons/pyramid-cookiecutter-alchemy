@@ -20,9 +20,28 @@ Getting Started
 
     env/bin/pip install -e ".[testing]"
 
-- Configure the database.
+- Initialize the database.
 
-    env/bin/initialize_{{ cookiecutter.repo_name }}_db development.ini
+    - This cookiecutter provides support for initializing the database either
+    - (a) with migrations through alembic, or
+    - (b) without migrations.
+    
+    - (a) Initialize the database with migrations through alembic:
+    - First use alembic to generate revisions.
+
+        env/bin/alembic -c development.ini revision --autogenerate -m "init"
+
+    - upgrade to that revision:
+
+        env/bin/alembic -c development.ini upgrade head
+    
+    - Later you can run database migrations.
+    - Also there is commented code that can be used to
+    - initialize the database directly to the latest revision.
+    - {{cookiecutter.repo_name}}/scripts/initializedb.py
+    
+    - (b) Initialize the database without migrations:
+        env/bin/initialize_{{cookiecutter.repo_name}}_db development.ini
 
 - Run your project's tests.
 

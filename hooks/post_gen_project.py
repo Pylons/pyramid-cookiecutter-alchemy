@@ -21,6 +21,7 @@ vars = dict(
     pip_cmd=os.path.join(venv_bin, 'pip'),
     pytest_cmd=os.path.join(venv_bin, 'pytest'),
     pserve_cmd=os.path.join(venv_bin, 'pserve'),
+    alembic_cmd=os.path.join(venv_bin, 'alembic'),
     init_cmd=os.path.join(venv_bin, 'initialize_{{ cookiecutter.repo_name }}_db'),
 )
 msg = dedent(
@@ -45,7 +46,23 @@ msg = dedent(
     Install the project in editable mode with its testing requirements.
         %(pip_cmd)s install -e ".[testing]"
 
-    Configure the database:
+    Initialize the database.
+
+        # This cookiecutter provides support for initializing the database either
+        # (a) with migrations through alembic, or
+        # (b) without migrations.
+        #
+        # (a) Initialize the database with migrations through alembic:
+        # First use alembic to generate revisions.
+        %(alembic_cmd)s -c development.ini revision --autogenerate -m "init"
+        # upgrade to that revision:
+        %(alembic_cmd)s -c development.ini upgrade head
+        # Later you can run database migrations.
+        # Also there is commented code that can be used to
+        # initialize the database directly to the latest revision.
+        # {{cookiecutter.repo_name}}/scripts/initializedb.py
+        #
+        # (b) Initialize the database without migrations:
         %(init_cmd)s development.ini
 
     Run your project's tests.
