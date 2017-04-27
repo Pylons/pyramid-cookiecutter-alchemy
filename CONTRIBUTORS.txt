@@ -110,3 +110,5 @@ Contributors
 - Steve Piercy, 2016-06-08
 
 - Michael Merickel, 2016-11-26
+
+- Rémy Hubscher (@natim), 2017-04-27
