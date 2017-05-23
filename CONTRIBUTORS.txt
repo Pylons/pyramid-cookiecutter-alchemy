@@ -112,3 +112,5 @@ Contributors
 - Michael Merickel, 2016-11-26
 
 - Rémy Hubscher (@natim), 2017-04-27
+
+- goodwillcoding, 2017-05-22
