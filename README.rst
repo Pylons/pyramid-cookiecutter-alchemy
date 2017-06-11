@@ -2,7 +2,7 @@
 pyramid-cookiecutter-alchemy
 ============================
 
-.. image:: https://travis-ci.org/Pylons/pyramid-cookiecutter-alchemy.png?branch=master
+.. image:: https://travis-ci.org/Pylons/pyramid-cookiecutter-alchemy.png?branch=1.8-branch
         :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-alchemy
         :alt: Master Travis CI Status
 
