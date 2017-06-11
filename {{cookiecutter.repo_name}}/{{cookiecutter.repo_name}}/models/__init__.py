@@ -62,7 +62,7 @@ def includeme(config):
     # use pyramid_tm to hook the transaction lifecycle to the request
     config.include('pyramid_tm')
 
-    # use pyramid_retry to allow retrying N times before indicating failure
+    # use pyramid_retry to retry a request when transient exceptions occur
     config.include('pyramid_retry')
 
     session_factory = get_session_factory(get_engine(settings))
