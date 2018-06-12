@@ -20,17 +20,13 @@ Getting Started
 
     env/bin/pip install -e ".[testing]"
 
-- Initialize the database.
+- Migrate the database using Alembic.
 
-    - This cookiecutter provides support for initializing the database
-    - with migrations through alembic.
-    
-    - Initialize the database with migrations through alembic:
-    - First use alembic to generate revisions.
+    - Generate revisions.
 
         env/bin/alembic -c development.ini revision --autogenerate -m "init"
 
-    - upgrade to that revision:
+    - Upgrade to that revision.
 
         env/bin/alembic -c development.ini upgrade head
     
