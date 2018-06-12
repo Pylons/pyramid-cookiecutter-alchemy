@@ -3,7 +3,7 @@ from pyramid.paster import get_appsettings, setup_logging
 
 from alembic import context
 from sqlalchemy import engine_from_config
-from {{cookiecutter.project_name}}.models.meta import Base
+from {{ cookiecutter.repo_name }}.models.meta import Base
 
 config = context.config
 
