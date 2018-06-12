@@ -6,7 +6,7 @@ pyramid-cookiecutter-alchemy
         :target: https://travis-ci.org/Pylons/pyramid-cookiecutter-alchemy
         :alt: Master Travis CI Status
 
-A Cookiecutter (project template) for creating a Pyramid project using SQLite for persistent storage, SQLAlchemy for an ORM, URL dispatch for routing, and Jinja2 for templating.
+A Cookiecutter (project template) for creating a Pyramid project using SQLite for persistent storage, SQLAlchemy for an ORM, Alembic for database migrations, URL dispatch for routing, and Jinja2 for templating.
 
 Requirements
 ------------
@@ -52,19 +52,15 @@ Usage
        # ...and into which we install our project and its testing requirements.
        $ env/bin/pip install -e ".[testing]"
 
-3. Initialize the database.
+3. Migrate the database using Alembic.
 
    .. code-block:: bash
 
-    # This cookiecutter provides support for initializing the database
-    # with migrations through alembic.
-    #
-    # Initialize the database with migrations through alembic:
-    # First use alembic to generate revisions.
-    $ env/bin/alembic -c development.ini revision --autogenerate -m "init"
-    # upgrade to that revision:
-    $ env/bin/alembic -c development.ini upgrade head
-    # Later you can run database migrations.
+       # Generate revisions.
+       $ env/bin/alembic -c development.ini revision --autogenerate -m "init"
+       # Upgrade to that revision.
+       $ env/bin/alembic -c development.ini upgrade head
+       # Later you can run database migrations.
 
 4. Run your project's tests.
 
