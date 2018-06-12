@@ -46,15 +46,10 @@ msg = dedent(
     Install the project in editable mode with its testing requirements.
         %(pip_cmd)s install -e ".[testing]"
 
-    Initialize the database.
-
-        # This cookiecutter provides support for initializing the database
-        # with migrations through alembic.
-        #
-        # Initialize the database with migrations through alembic:
-        # First use alembic to generate revisions.
+    Migrate the database using Alembic.
+        # Generate revisions.
         %(alembic_cmd)s -c development.ini revision --autogenerate -m "init"
-        # upgrade to that revision:
+        # Upgrade to that revision.
         %(alembic_cmd)s -c development.ini upgrade head
         # Later you can run database migrations.
 
