@@ -47,11 +47,12 @@ msg = dedent(
         %(pip_cmd)s install -e ".[testing]"
 
     Migrate the database using Alembic.
-        # Generate revisions.
+        # Generate your first revision.
         %(alembic_cmd)s -c development.ini revision --autogenerate -m "init"
         # Upgrade to that revision.
         %(alembic_cmd)s -c development.ini upgrade head
-        # Later you can run database migrations.
+        # Load default data.
+        %(init_cmd)s development.ini
 
     Run your project's tests.
         %(pytest_cmd)s
