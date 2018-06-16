@@ -1,12 +1,10 @@
 import os
 import sys
 
-from pyramid.paster import get_appsettings, setup_logging
+from pyramid.paster import bootstrap, setup_logging
 from sqlalchemy.exc import OperationalError
-import transaction
 
 from .. import models
-from ..models import get_engine, get_session_factory, get_tm_session
 
 
 def setup_models(dbsession):
@@ -26,14 +24,11 @@ def main(argv=sys.argv):
         usage(argv)
     config_uri = argv[1]
     setup_logging(config_uri)
-    settings = get_appsettings(config_uri)
-    engine = get_engine(settings)
-    session_factory = get_session_factory(engine)
-    tm = transaction.TransactionManager(explicit=True)
+    env = bootstrap(config_uri)
 
     try:
-        with tm:
-            dbsession = get_tm_session(session_factory, tm)
+        with env['request'].tm:
+            dbsession = env['request'].dbsession
             setup_models(dbsession)
     except OperationalError:
         print('''
