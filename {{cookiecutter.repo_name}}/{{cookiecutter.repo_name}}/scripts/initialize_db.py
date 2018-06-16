@@ -2,39 +2,39 @@ import os
 import sys
 
 from pyramid.paster import get_appsettings, setup_logging
-from pyramid.scripts.common import parse_vars
 from sqlalchemy.exc import OperationalError
-
 import transaction
 
-from ..models import MyModel, get_engine, get_session_factory, get_tm_session
+from .. import models
+from ..models import get_engine, get_session_factory, get_tm_session
+
+
+def setup_models(dbsession):
+    model = models.MyModel(name='one', value=1)
+    dbsession.add(model)
 
 
 def usage(argv):
     cmd = os.path.basename(argv[0])
-    print('usage: %s <config_uri> [var=value]\n'
+    print('usage: %s <config_uri>\n'
           '(example: "%s development.ini")' % (cmd, cmd))
     sys.exit(1)
 
 
 def main(argv=sys.argv):
-    if len(argv) < 2:
+    if len(argv) != 2:
         usage(argv)
     config_uri = argv[1]
-    options = parse_vars(argv[2:])
     setup_logging(config_uri)
-    settings = get_appsettings(config_uri, options=options)
-
+    settings = get_appsettings(config_uri)
     engine = get_engine(settings)
-
     session_factory = get_session_factory(engine)
+    tm = transaction.TransactionManager(explicit=True)
 
     try:
-        with transaction.manager:
-            dbsession = get_tm_session(session_factory, transaction.manager)
-
-            model = MyModel(name='one', value=1)
-            dbsession.add(model)
+        with tm:
+            dbsession = get_tm_session(session_factory, tm)
+            setup_models(dbsession)
     except OperationalError:
         print('''
 Pyramid is having a problem using your SQL database.  The problem
