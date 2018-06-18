@@ -1,8 +1,8 @@
 """Pyramid bootstrap environment. """
+from alembic import context
 from pyramid.paster import get_appsettings, setup_logging
 
-from alembic import context
-from sqlalchemy import engine_from_config
+from {{ cookiecutter.repo_name }}.models import get_engine
 from {{ cookiecutter.repo_name }}.models.meta import Base
 
 config = context.config
@@ -25,7 +25,7 @@ def run_migrations_offline():
     script output.
 
     """
-    context.configure(url=settings.get('sqlalchemy.url'))
+    context.configure(url=settings['sqlalchemy.url'])
     with context.begin_transaction():
         context.run_migrations()
 
@@ -37,9 +37,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    # specify here how the engine is acquired
-    # engine = meta.engine
-    engine = engine_from_config(settings, 'sqlalchemy.')
+    engine = get_engine(settings)
 
     connection = engine.connect()
     context.configure(
