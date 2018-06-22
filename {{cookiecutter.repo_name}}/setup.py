@@ -9,6 +9,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'alembic',
     'plaster_pastedeploy',
     'pyramid >= 1.9a',
     'pyramid_debugtoolbar',
@@ -54,7 +55,7 @@ setup(
             'main = {{ cookiecutter.repo_name }}:main',
         ],
         'console_scripts': [
-            'initialize_{{ cookiecutter.repo_name }}_db = {{ cookiecutter.repo_name }}.scripts.initializedb:main',
+            'initialize_{{ cookiecutter.repo_name }}_db = {{ cookiecutter.repo_name }}.scripts.initialize_db:main',
         ],
     },
 )

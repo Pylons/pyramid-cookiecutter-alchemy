@@ -21,6 +21,7 @@ vars = dict(
     pip_cmd=os.path.join(venv_bin, 'pip'),
     pytest_cmd=os.path.join(venv_bin, 'pytest'),
     pserve_cmd=os.path.join(venv_bin, 'pserve'),
+    alembic_cmd=os.path.join(venv_bin, 'alembic'),
     init_cmd=os.path.join(venv_bin, 'initialize_{{ cookiecutter.repo_name }}_db'),
 )
 msg = dedent(
@@ -45,7 +46,12 @@ msg = dedent(
     Install the project in editable mode with its testing requirements.
         %(pip_cmd)s install -e ".[testing]"
 
-    Configure the database:
+    Migrate the database using Alembic.
+        # Generate your first revision.
+        %(alembic_cmd)s -c development.ini revision --autogenerate -m "init"
+        # Upgrade to that revision.
+        %(alembic_cmd)s -c development.ini upgrade head
+        # Load default data.
         %(init_cmd)s development.ini
 
     Run your project's tests.
