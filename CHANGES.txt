@@ -1,3 +1,10 @@
+unreleased
+----------
+- Add Alembic support
+  See: https://github.com/Pylons/pyramid-cookiecutter-alchemy/pull/7 and
+  https://github.com/Pylons/pyramid/issues/1597
+
+
 0.3
 ---
 
