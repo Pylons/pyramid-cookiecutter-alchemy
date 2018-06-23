@@ -52,15 +52,16 @@ Usage
        # ...and into which we install our project and its testing requirements.
        $ env/bin/pip install -e ".[testing]"
 
-3. Migrate the database using Alembic.
+3. Initialize the database using Alembic.
 
    .. code-block:: bash
 
-       # Generate revisions.
+       # Generate your first revision.
        $ env/bin/alembic -c development.ini revision --autogenerate -m "init"
        # Upgrade to that revision.
        $ env/bin/alembic -c development.ini upgrade head
-       # Later you can run database migrations.
+       # Load default data.
+       $ env/bin/initialize_tutorial_db development.ini
 
 4. Run your project's tests.
 
