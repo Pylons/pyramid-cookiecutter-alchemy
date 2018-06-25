@@ -27,50 +27,54 @@ This cookiecutter has several branches to support new features in Pyramid or avo
 Usage
 -----
 
-1. Generate a Pyramid project, following the prompts from the command.
+1.  Generate a Pyramid project, following the prompts from the command.
 
-   .. code-block:: bash
+    .. code-block:: bash
 
-       $ cookiecutter gh:Pylons/pyramid-cookiecutter-alchemy
+        $ cookiecutter gh:Pylons/pyramid-cookiecutter-alchemy
 
-   Optionally append a specific branch checkout to the command:
+    Optionally append a specific branch checkout to the command:
 
-   .. code-block:: bash
+    .. code-block:: bash
 
-       $ cookiecutter gh:Pylons/pyramid-cookiecutter-alchemy --checkout master
+        $ cookiecutter gh:Pylons/pyramid-cookiecutter-alchemy --checkout master
 
-2. Finish configuring the project by creating a virtual environment and installing your new project. These steps are output as part of the cookiecutter command above and are slightly different for Windows.
+2.  Finish configuring the project by creating a virtual environment and installing your new project. These steps are output as part of the cookiecutter command above and are slightly different for Windows.
 
-   .. code-block:: bash
+    .. code-block:: bash
 
-       # Change directory into your newly created project.
-       $ cd myproj
-       # Create a virtual environment...
-       $ python3 -m venv env
-       # ...where we upgrade packaging tools...
-       $ env/bin/pip install --upgrade pip setuptools
-       # ...and into which we install our project and its testing requirements.
-       $ env/bin/pip install -e ".[testing]"
+        # Change directory into your newly created project.
+        $ cd myproj
+        # Create a virtual environment...
+        $ python3 -m venv env
+        # ...where we upgrade packaging tools...
+        $ env/bin/pip install --upgrade pip setuptools
+        # ...and into which we install our project and its testing requirements.
+        $ env/bin/pip install -e ".[testing]"
 
-3. Initialize the database using Alembic.
+3. Initialize and upgrade the database using Alembic.
 
-   .. code-block:: bash
+    .. code-block:: bash
 
-       # Generate your first revision.
-       $ env/bin/alembic -c development.ini revision --autogenerate -m "init"
-       # Upgrade to that revision.
-       $ env/bin/alembic -c development.ini upgrade head
-       # Load default data.
-       $ env/bin/initialize_tutorial_db development.ini
+        # Generate your first revision.
+        $ env/bin/alembic -c development.ini revision --autogenerate -m "init"
+        # Upgrade to that revision.
+        $ env/bin/alembic -c development.ini upgrade head
 
-4. Run your project's tests.
+4. Load default data into the database using a script.
 
-   .. code-block:: bash
+    .. code-block:: bash
 
-       $ env/bin/pytest
+        $ env/bin/initialize_tutorial_db development.ini
 
-5. Run your project.
+5. Run your project's tests.
 
-   .. code-block:: bash
+    .. code-block:: bash
 
-       $ env/bin/pserve development.ini
+        $ env/bin/pytest
+
+6. Run your project.
+
+    .. code-block:: bash
+
+        $ env/bin/pserve development.ini
