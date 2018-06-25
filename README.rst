@@ -52,7 +52,7 @@ Usage
         # ...and into which we install our project and its testing requirements.
         $ env/bin/pip install -e ".[testing]"
 
-3. Initialize and upgrade the database using Alembic.
+3.  Initialize and upgrade the database using Alembic.
 
     .. code-block:: bash
 
@@ -61,19 +61,19 @@ Usage
         # Upgrade to that revision.
         $ env/bin/alembic -c development.ini upgrade head
 
-4. Load default data into the database using a script.
+4.  Load default data into the database using a script.
 
     .. code-block:: bash
 
         $ env/bin/initialize_tutorial_db development.ini
 
-5. Run your project's tests.
+5.  Run your project's tests.
 
     .. code-block:: bash
 
         $ env/bin/pytest
 
-6. Run your project.
+6.  Run your project.
 
     .. code-block:: bash
 
