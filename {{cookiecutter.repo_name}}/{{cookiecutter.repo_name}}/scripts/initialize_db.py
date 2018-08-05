@@ -8,13 +8,20 @@ from .. import models
 
 
 def setup_models(dbsession):
+    """
+    Add or update models / fixtures in the database.
+
+    """
     model = models.mymodel.MyModel(name='one', value=1)
     dbsession.add(model)
 
 
 def parse_args(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('config_uri')
+    parser.add_argument(
+        'config_uri',
+        help='Configuration file, e.g., development.ini',
+    )
     return parser.parse_args(argv[1:])
 
 
