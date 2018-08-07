@@ -15,4 +15,4 @@ You can contribute to this project in several ways.
 
 ## Prerequisites
 
-Follow the instructions in [README.md](https://github.com/Pylons/pyramid-cookiecutter-alchemy) to install the tools needed to run the project.
+Follow the instructions in [README.rst](https://github.com/Pylons/pyramid-cookiecutter-alchemy) to install the tools needed to run the project.
