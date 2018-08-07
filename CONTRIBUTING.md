@@ -10,9 +10,7 @@ You can contribute to this project in several ways.
 
 ## Git Branches
 
-Git branches and their purpose and status at the time of this writing are listed below.
-
-- [master](https://github.com/Pylons/trypyramid.com/) - The branch which should always be *deployable*. The default branch on GitHub.
+- Submit pull requests to the [`master` branch](https://github.com/Pylons/pyramid-cookiecutter-alchemy/tree/master).  This branch is *not* the default and must be selected instead of [`latest`].  See the [README.rst, under Versions](https://github.com/Pylons/pyramid-cookiecutter-alchemy#versions).
 - For development, create a new branch. If changes on your new branch are accepted, they will be merged into the master branch and deployed.
 
 ## Prerequisites
