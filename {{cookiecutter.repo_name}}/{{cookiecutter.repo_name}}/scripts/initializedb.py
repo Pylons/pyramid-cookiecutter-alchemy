@@ -30,8 +30,9 @@ def main(argv=sys.argv):
         usage(argv)
     config_uri = argv[1]
     options = parse_vars(argv[2:])
+    name = options.pop('name', None)
     setup_logging(config_uri)
-    settings = get_appsettings(config_uri, options=options)
+    settings = get_appsettings(config_uri, name=name, options=options)
 
     engine = get_engine(settings)
     Base.metadata.create_all(engine)
