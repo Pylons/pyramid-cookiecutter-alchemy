@@ -57,8 +57,10 @@ msg = dedent(
     %(separator)s
     This cookiecutter has been deprecated in favor of the unified cookiecutter 
     pyramid-cookiecutter-starter effective with the release of Pyramid 1.10.  
-    Please use pyramid-cookiecutter-starter instead: 
-    https://github.com/pylons/pyramid-cookiecutter-starter
+    pyramid-cookiecutter-starter combines all features of pyramid-cookiecutter-alchemy 
+    and pyramid-cookiecutter-zodb. Please use pyramid-cookiecutter-starter 
+    (https://github.com/pylons/pyramid-cookiecutter-starter) instead of this one. 
+    This cookiecutter may not receive further updates.
     %(separator)s
     """ % vars)
 print(msg)
