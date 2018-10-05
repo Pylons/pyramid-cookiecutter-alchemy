@@ -53,5 +53,14 @@ msg = dedent(
 
     Run your project.
         %(pserve_cmd)s development.ini
+        
+    %(separator)s
+    This cookiecutter has been deprecated in favor of the unified cookiecutter 
+    pyramid-cookiecutter-starter effective with the release of Pyramid 1.10.  
+    pyramid-cookiecutter-starter combines all features of pyramid-cookiecutter-alchemy 
+    and pyramid-cookiecutter-zodb. Please use pyramid-cookiecutter-starter 
+    (https://github.com/pylons/pyramid-cookiecutter-starter) instead of this one. 
+    This cookiecutter may not receive further updates.
+    %(separator)s
     """ % vars)
 print(msg)
