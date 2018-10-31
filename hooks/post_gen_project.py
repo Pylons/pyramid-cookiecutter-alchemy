@@ -21,6 +21,7 @@ vars = dict(
     pip_cmd=os.path.join(venv_bin, 'pip'),
     pytest_cmd=os.path.join(venv_bin, 'pytest'),
     pserve_cmd=os.path.join(venv_bin, 'pserve'),
+    alembic_cmd=os.path.join(venv_bin, 'alembic'),
     init_cmd=os.path.join(venv_bin, 'initialize_{{ cookiecutter.repo_name }}_db'),
 )
 msg = dedent(
@@ -45,7 +46,12 @@ msg = dedent(
     Install the project in editable mode with its testing requirements.
         %(pip_cmd)s install -e ".[testing]"
 
-    Configure the database:
+    Migrate the database using Alembic.
+        # Generate your first revision.
+        %(alembic_cmd)s -c development.ini revision --autogenerate -m "init"
+        # Upgrade to that revision.
+        %(alembic_cmd)s -c development.ini upgrade head
+        # Load default data.
         %(init_cmd)s development.ini
 
     Run your project's tests.
@@ -53,5 +59,15 @@ msg = dedent(
 
     Run your project.
         %(pserve_cmd)s development.ini
+        
+    %(separator)s
+    This cookiecutter has been deprecated in favor of the unified cookiecutter 
+    pyramid-cookiecutter-starter effective with the release of Pyramid 1.10.  
+    pyramid-cookiecutter-starter combines all features of pyramid-cookiecutter-alchemy 
+    and pyramid-cookiecutter-zodb. Please use pyramid-cookiecutter-starter 
+    (https://github.com/pylons/pyramid-cookiecutter-starter) instead of this one. 
+    This cookiecutter may not receive further updates.
+    %(separator)s
     """ % vars)
+
 print(msg)
